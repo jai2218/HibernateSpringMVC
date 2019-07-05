@@ -40,6 +40,82 @@
       <script src="js/respond.min.js"></script>
       <script src="js/lte-ie7.js"></script>
     <![endif]-->
+    
+   <style type="text/css">
+  span.error{
+    color: red;
+    margin-left: 5px;
+  }
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <!-- <script type="text/javascript">
+$(function() {
+	/*  Submit form using Ajax */
+	$('button[type=submit]').click(function(e) {
+		
+		//Prevent default submission of form
+		e.preventDefault();
+		
+		//Remove all errors
+		$('input').next().remove();
+		
+		$.post({
+			url : 'save',
+			data : $('form[name=addUserForm]').serialize(),
+			success : function(res) {
+				
+				if(res.validated){
+					//Set response
+					$('#resultContainer pre code').text(JSON.stringify(res.userDtlsJson));
+					$('#resultContainer').show();
+					
+				}else{
+					//Set error messages
+					$.each(res.errorMessages,function(key,value){
+						$('input[name='+key+']').after('<span class="error">'+value+'</span>');
+					});
+				}
+			}
+		
+		})
+	});
+});
+</script> -->
+
+<script type="text/javascript">
+
+function saveUserDtls() {
+	alert("form submit")
+	/*  Submit form using Ajax */
+	$.ajax({
+			url : 'save',
+			data : $('form[name=addUserForm]').serialize(),
+			type: 'post',
+			success : function(res) {
+				$("#jsonResp").text(JSON.stringify(res.userDetailsJson));
+				if(res.validated){
+					//Set response
+					$('#resultContainer pre code').text(JSON.stringify(res.userDtlsJson));
+					$('#resultContainer').show();
+					
+				}else{
+					//Set error messages
+					$.each(res.errorMessages,function(key,value){
+						$('input[name='+key+']').after('<span class="error">'+value+'</span>');
+					});
+				}
+			}
+		
+		});
+	
+	return false;
+	
+}
+
+</script>
+
+
 
     <!-- =======================================================
       Theme Name: NiceAdmin
@@ -433,7 +509,7 @@
 						<section class="panel">
 							<header class="panel-heading"> Add New User</header>
 							<div class="panel-body">
-								<form:form action="save" method="post">
+								<form:form method="GET" onsubmit="return saveUserDtls();" name="addUserForm">
 									<div align="center">
 										<h1 style="text-decoration: underline;">Add New User</h1>
 
@@ -464,7 +540,8 @@
 											<tr style="height: 8px;"></tr>
 											<tr>
 												<td></td>
-												<td><input type="submit" value="save" /></td>
+												<!-- <td><input type="submit" value="save" /></td> -->
+												<td><form:button type="submit" value="save" >Submit</form:button></td>
 											</tr>
 											<tr style="height: 8px;"></tr>
 
@@ -477,6 +554,15 @@
 									<br />
 
 								</form:form>
+
+								<!-- Result Container  -->
+								<div id="resultContainer" style="display: none;">
+									<hr />
+									<h4 style="color: green;">JSON Response From Server</h4>
+									<pre style="color: green;">
+    									<code id="jsonResp"></code>
+   									</pre>
+								</div>
 
 
 							</div>
@@ -533,7 +619,7 @@
   <!-- ck editor -->
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/ckeditor/ckeditor.js"></script>
   <!-- custom form component script for this page-->
-  <script src="${pageContext.request.contextPath}/resources/js/form-component.js"></script>
+  <%-- <script src="${pageContext.request.contextPath}/resources/js/form-component.js"></script> --%>
   <!-- custome script for all page -->
   <script src="${pageContext.request.contextPath}/resources/js/scripts.js"></script>
 
