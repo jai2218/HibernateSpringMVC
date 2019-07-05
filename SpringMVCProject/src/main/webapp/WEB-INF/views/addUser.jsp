@@ -431,7 +431,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="panel">
-							<header class="panel-heading"> Add New User </header>
+							<header class="panel-heading"> Add New User</header>
 							<div class="panel-body">
 								<form:form action="save" method="post">
 									<div align="center">
