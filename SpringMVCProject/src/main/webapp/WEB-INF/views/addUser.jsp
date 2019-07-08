@@ -49,44 +49,14 @@
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- <!-- <script type="text/javascript">
-$(function() {
-	/*  Submit form using Ajax */
-	$('button[type=submit]').click(function(e) {
-		
-		//Prevent default submission of form
-		e.preventDefault();
-		
-		//Remove all errors
-		$('input').next().remove();
-		
-		$.post({
-			url : 'save',
-			data : $('form[name=addUserForm]').serialize(),
-			success : function(res) {
-				
-				if(res.validated){
-					//Set response
-					$('#resultContainer pre code').text(JSON.stringify(res.userDtlsJson));
-					$('#resultContainer').show();
-					
-				}else{
-					//Set error messages
-					$.each(res.errorMessages,function(key,value){
-						$('input[name='+key+']').after('<span class="error">'+value+'</span>');
-					});
-				}
-			}
-		
-		})
-	});
-});
-</script> -->
 
 <script type="text/javascript">
 
 function saveUserDtls() {
-	alert("form submit")
+	/* alert("form submit") */
+	
+	if(validateform()){
+
 	/*  Submit form using Ajax */
 	$.ajax({
 			url : 'save',
@@ -106,12 +76,40 @@ function saveUserDtls() {
 					});
 				}
 			}
+	
 		
 		});
 	
-	return false;
+	}
 	
+	return false;
 }
+
+function validateform(){  
+	var name=document.addUserForm.name.value;
+	var email=document.addUserForm.email.value;
+	var address=document.addUserForm.address.value;
+
+	/* var password=document.myform.password.value; */  
+	  
+	if (name==null || name==""){  
+	  alert("Name can't be blank");  
+	  return false;  
+	}else if (name.length<3) {
+		alert("Name must be greter than or equal to 3 letters");
+		return false; 
+	}else if (name.length>20) {
+		alert("Name should not be greater than 20 letters");
+		return false; 
+	}else if (email==null || email=="") {
+		alert("Email can't be blank");
+		return false; 
+	}else if (address==null || address=="") {
+		alert("Address can't be blank");
+		return false; 
+	} 
+	return true;
+	}
 
 </script>
 
