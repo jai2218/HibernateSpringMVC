@@ -13,5 +13,7 @@ public interface UserDtlsService {
 	public UserDetails getUserDtls(int user_id);
 	
 	public void deleteUserDtls(int user_id);
+	
+	public void updateUserDtls(UserDetails userDtls);
 
 }

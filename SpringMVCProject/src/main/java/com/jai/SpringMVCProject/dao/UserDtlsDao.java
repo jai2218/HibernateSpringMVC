@@ -14,6 +14,8 @@ public interface UserDtlsDao {
 	
 	public void deleteUserDtls(int user_id);
 	
+	public void updateUserDtls(UserDetails userDtls);
+	
 	
 
 }

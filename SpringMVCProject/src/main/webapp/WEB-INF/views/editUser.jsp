@@ -60,7 +60,7 @@
       </div>
 
       <!--logo start-->
-      <a href="./index" class="logo">Jai <span class="lite">Shanker</span></a>
+      <a href="../index" class="logo">Jai <span class="lite">Shanker</span></a>
       <!--logo end-->
 
       <div class="nav search-row" id="top_menu">
@@ -322,7 +322,7 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
           <li class="active">
-            <a class="" href="./index">
+            <a class="" href="../index">
                           <i class="icon_house_alt"></i>
                           <span>Dashboard</span>
                       </a>
@@ -433,7 +433,7 @@
 						<section class="panel">
 							<header class="panel-heading"> Edit User </header>
 							<div class="panel-body">
-								<form:form action="/SpringProject/editsave" method="post">
+								<form:form action="/SpringMVCProject/editsave" method="post">
 									<div align="center">
 										<h1 style="text-decoration: underline;">Edit User</h1>
 

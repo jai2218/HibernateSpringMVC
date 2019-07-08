@@ -446,7 +446,7 @@
 										<th>DELETE</th>
 									</tr>
 
-									<c:forEach var="user" items="${list}">
+									<c:forEach var="user" items="${userDtlsList}">
 
 										<tr>
 

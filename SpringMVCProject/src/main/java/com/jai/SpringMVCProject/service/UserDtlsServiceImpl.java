@@ -42,4 +42,10 @@ public class UserDtlsServiceImpl implements UserDtlsService{
 		
 	}
 
+	@Override
+	@Transactional
+	public void updateUserDtls(UserDetails userDtls) {
+		userDtlsDao.updateUserDtls(userDtls);
+	}
+
 }

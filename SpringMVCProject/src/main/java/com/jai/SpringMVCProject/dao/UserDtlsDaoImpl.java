@@ -56,4 +56,13 @@ public class UserDtlsDaoImpl implements UserDtlsDao{
 		currentSession.delete(delUser);
 	}
 
+	@Override
+	public void updateUserDtls(UserDetails userDtls) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		currentSession.update(userDtls);
+		
+	}
+	
+	
+
 }
