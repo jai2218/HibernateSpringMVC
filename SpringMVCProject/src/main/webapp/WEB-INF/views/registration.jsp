@@ -48,40 +48,100 @@
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css"
 	rel="stylesheet" type="text/css" />
 	
-	<script>  
-function validateform(){  
-var name=document.myform.name.value;
-var email=document.myform.email.value;
-var mobileNumber=document.myform.mobileNumber.value;
-var userName=document.myform.userName.value;
-var password=document.myform.password.value;
-var cnfrmPassword=document.myform.cnfrmPassword.value;
-var dob=document.myform.dob.value;
-var gender=document.myform.gender.value;
-/* var password=document.myform.password.value; */  
-  
-if (name==null || name==""){  
-  alert("Name can't be blank");  
-  return false;  
-}else if (name.length<3) {
-	alert("Name must be greter than or equal to 3 letters");
-	return false; 
-}else if (name.length>20) {
-	alert("Name should not be greater than 20 letters");
-	return false; 
-}else if (email==null || email=="") {
-	alert("Email can't be blank");
-	return false; 
-}else if (mobileNumber==null || mobileNumber=="") {
-	alert("Mobile Number can't be blank");
-	return false; 
+
+<style type="text/css">
+  span.error{
+    color: red;
+    margin-left: 5px;
+  }
+</style>
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+
+<script type="text/javascript">
+
+function saveRegistrationDtls() {
+	/* alert("form submit") */
+	
+	if(validateform()){
+
+	/*  Submit form using Ajax */
+	$.ajax({
+			url : 'saveRegistration',
+			data : $('form[name=myRegForm]').serialize(),
+			type: 'post',
+			success : function(res) {
+				 $("#jsonResp").text(JSON.stringify(res.regJSON)); 
+				if(res.validated){
+					//Set response
+					 $('#resultContainer pre code').text(JSON.stringify(res.regJSON));
+					$('#resultContainer').show();
+					
+				}else{
+					//Set error messages
+					$.each(res.errorMessages,function(key,value){
+						$('input[name='+key+']').after('<span class="error">'+value+'</span>');
+					});
+				}
+			}
+	
+		
+		});
+	
+	}
+	
+	return false;
 }
 
-else if(password.length<6){  
-  alert("Password must be at least 6 characters long.");  
-  return false;  
-  }  
-}  
+	function validateform() {
+		var name 			= document.myRegForm.name.value;
+		var email 			= document.myRegForm.email.value;
+		var mobileNumber 	= document.myRegForm.mobileNumber.value;
+		var userName 		= document.myRegForm.userName.value;
+		var password 		= document.myRegForm.password.value;
+		var cnfrmPassword 	= document.myRegForm.cnfrmPassword.value;
+		var dob 			= document.myRegForm.dob.value;
+		var gender 			= document.myRegForm.gender.value;
+		/* var password		=document.myform.password.value; */
+
+		if (name == null || name == "") {
+			alert("Name can't be blank");
+			return false;
+		} else if (name.length < 3) {
+			alert("Name must be greter than or equal to 3 letters");
+			return false;
+		} else if (name.length > 20) {
+			alert("Name should not be greater than 20 letters");
+			return false;
+		} else if (email == null || email == "") {
+			alert("Email can't be blank");
+			return false;
+		} else if (mobileNumber == null || mobileNumber == "") {
+			alert("Mobile Number can't be blank");
+			return false;
+		}else if (userName == null || userName == "") {
+			alert("User Name can't be blank");
+			return false;
+		}
+		else if (password.length < 4) {
+			alert("Password must be at least 4 characters long.");
+			return false;
+		}else if (cnfrmPassword == null || cnfrmPassword == "") {
+			alert("Confirm password");	
+			return false;
+		}else if (cnfrmPassword != password) {
+			alert("Conferm password must be same as Password inserted.");
+			return false;
+		}
+		else if (dob == "") {
+			alert("Select Date of Birth")
+			return false;
+		}else if (gender == 0) {
+			alert("Select Gender");
+			return false;
+		}
+		return true;
+	}
 </script>
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
@@ -117,7 +177,7 @@ else if(password.length<6){
 
 			</header>
 			<!--header end-->
-			<form:form class="login-form" action="signup" method="post" name="myform" onsubmit="return validateform()" >
+			<form:form class="login-form" method="post" name="myRegForm" onsubmit="return saveRegistrationDtls()" >
 				<div class="login-wrap">
 					<h1 align="center"
 						style="font-style: oblique; font-weight: bold; font-family: sans-serif; color: #0B95BD; font-size: 40px;">Sign
@@ -158,16 +218,16 @@ else if(password.length<6){
 
 					<div class="input-group">
 						<form:select style="height: 40px; width: 180px;" path="gender">
-							<option value="1" disabled="disabled">Select Gender</option>
-							<option value="2">Male</option>
-							<option value="3">Female</option>
-							<option value="4">Trigender</option>
+							<option value="0">Select Gender</option>
+							<option value="1">Male</option>
+							<option value="2">Female</option>
+							<option value="3">Trigender</option>
 						</form:select>
 					</div>
 					<div style="height: 50px;"></div>
 
 					<div style="height: 60px;" class="input-group">
-						<button class="btn btn-primary btn-lg btn-block" type="submit" value="signup">
+						<button class="btn btn-primary btn-lg btn-block" type="submit">
 							<b style="font-size: 17px;">Sign Up</b>
 						</button>
 					</div>

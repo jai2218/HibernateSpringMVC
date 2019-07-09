@@ -54,16 +54,6 @@ public class HomeController {
 		return "profile";
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String formlogin(Model model) {
-		model.addAttribute("command");
-		return "login";
-	}
-
-	@RequestMapping(value = "/registration", method = RequestMethod.GET)
-	public String register(Model model) {
-		model.addAttribute("command");
-		return "registration";
-	}
+	
 
 }
