@@ -107,6 +107,11 @@ public class UserDetailsController {
 			return "viewUser";
 		}
 	   
+	   @RequestMapping(value = "/deleteUser/{id}")
+		public String deleteUser(@PathVariable int id) {
+			userDtlsService.deleteUserDtls(id);
+			return "redirect:/viewUser";
+		}
 	   
 	   
 
