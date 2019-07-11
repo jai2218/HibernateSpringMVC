@@ -47,7 +47,7 @@ public class LoginController {
 	
 	@PostMapping(value = "/saveRegistration", produces = { MediaType.APPLICATION_JSON_VALUE })
 	   @ResponseBody
-	   public RegistrationJSONResponse regSave(@ModelAttribute("myRegForm") @Valid Registration reg, BindingResult result) {
+	   public RegistrationJSONResponse regSave(@ModelAttribute("myRegForm") @Valid Registration reg, BindingResult result, Model model) {
 
 		RegistrationJSONResponse respone = new RegistrationJSONResponse();
 	      
@@ -64,7 +64,7 @@ public class LoginController {
 	      }else{
 	         // Implement business logic to save employee into database
 	         //..
-	    	// model.addAttribute("command");
+	    	model.addAttribute("command: ");
 	    	respone.setValidated(true);
 	  		regService.saveRegistrationDtls(reg);
 	  		logger.info("User Added Successfully.");

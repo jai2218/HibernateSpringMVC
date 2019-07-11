@@ -77,12 +77,20 @@ function saveRegistrationDtls() {
 					 $('#resultContainer pre code').text(JSON.stringify(res.regJSON));
 					$('#resultContainer').show();
 					
+					alert(res.regJSON.name + " :  User Added Successfully" )
+					
+					window.location.href='login';
+					
 				}else{
 					//Set error messages
 					$.each(res.errorMessages,function(key,value){
 						$('input[name='+key+']').after('<span class="error">'+value+'</span>');
 					});
 				}
+			},
+			
+			error: function(error){
+				alert(error +" : User Not Added. Please try again..");
 			}
 	
 		
