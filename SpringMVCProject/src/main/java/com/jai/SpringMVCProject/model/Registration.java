@@ -7,14 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Where;
-
 @Entity
 @Table(name="user_registration")
 public class Registration {
 	
 	@Id
-	@Column(name = "id", length=5)
+	@Column(name = "reg_id", length=5)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	

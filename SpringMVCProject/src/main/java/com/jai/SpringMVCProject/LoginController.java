@@ -64,10 +64,11 @@ public class LoginController {
 	      }else{
 	         // Implement business logic to save employee into database
 	         //..
-	    	model.addAttribute("command: ");
+	    	
 	    	respone.setValidated(true);
 	  		regService.saveRegistrationDtls(reg);
 	  		logger.info("User Added Successfully.");
+	  		//model.addAttribute("Registration command: ", reg.getName());
 	  	
 	         respone.setRegJSON(reg);
 	       

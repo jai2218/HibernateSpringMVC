@@ -226,10 +226,10 @@ function saveRegistrationDtls() {
 
 					<div class="input-group">
 						<form:select style="height: 40px; width: 180px;" path="gender">
-							<option value="0">Select Gender</option>
-							<option value="1">Male</option>
-							<option value="2">Female</option>
-							<option value="3">Trigender</option>
+							<option value="Select Gender">Select Gender</option>
+							<option value="Male">Male</option>
+							<option value="Female">Female</option>
+							<option value="Trigender">Trigender</option>
 						</form:select>
 					</div>
 					<div style="height: 50px;"></div>
